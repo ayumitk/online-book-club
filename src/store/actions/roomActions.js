@@ -1,10 +1,12 @@
-export const createRoom = (room) => (dispatch, getState, { getFirestore }) => {
+export const createRoom = (room) => (dispatch, getState, { getFirebase, getFirestore }) => {
   // make async call to database
   const firestore = getFirestore();
+  const { profile } = getState().firebase;
+  const authorID = getState().firebase.auth.uid;
   firestore.collection('rooms').add({
     ...room,
-    authorName: 'Gina',
-    authorId: 12345,
+    authorName: profile.name,
+    authorId: authorID,
     createdAt: new Date(),
   }).then(() => {
     dispatch({ type: 'CREATE_PROJECT_SUCCESS' });
@@ -12,3 +14,5 @@ export const createRoom = (room) => (dispatch, getState, { getFirestore }) => {
     dispatch({ type: 'CREATE_PROJECT_ERROR' }, err);
   });
 };
+
+export const test = 'test';

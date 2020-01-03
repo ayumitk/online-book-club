@@ -7,7 +7,6 @@ import RoomList from '../rooms/RoomList';
 
 class Dashboard extends Component {
   render() {
-    // console.log(this.props);
     const { rooms } = this.props;
 
     return (

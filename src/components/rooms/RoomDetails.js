@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import moment from 'moment';
 
 const RoomDetails = (props) => {
   // console.log(props.room);
@@ -20,15 +21,27 @@ const RoomDetails = (props) => {
               {' '}
               { room.authorName }
             </div>
-            <div>2nd September, 2am</div>
+            <div>{moment(room.createdAt.toDate()).fromNow()}</div>
           </div>
         </div>
       </div>
     );
   }
   return (
-    <div className="container section">
-      loading...
+    <div className="container section center">
+      <div className="preloader-wrapper small active">
+        <div className="spinner-layer spinner-red-only">
+          <div className="circle-clipper left">
+            <div className="circle" />
+          </div>
+          <div className="gap-patch">
+            <div className="circle" />
+          </div>
+          <div className="circle-clipper right">
+            <div className="circle" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
